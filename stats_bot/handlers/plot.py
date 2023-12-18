@@ -65,7 +65,7 @@ async def plot_table(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
 
     # Plot top 10 users
     top_10_users = df.head(10)
-    plt.figure(figsize=(10, 6))  # Fix: Correct spelling of figsize
+    plt.figure(figsize=(10, 6))
     plt.bar(
         top_10_users["user_id"],
         top_10_users["num_messages"],
@@ -73,9 +73,9 @@ async def plot_table(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
         alpha=0.6,
         label="Number of Messages",
     )
-    plt.xlabel("User ID")  # Fix: Correct spelling of xlabel
-    plt.ylabel("Number of Messages")  # Fix: Correct spelling of ylabel
-    plt.title("Top 10 Users by Number of Messages and Average Message Length")
+    plt.xlabel("User ID") 
+    plt.ylabel("Number of Messages") 
+    plt.title(f"Top 10 Users in {update.effective_chat.title} by Number of Messages and Average Message Length")
     plt.legend()
     buf = io.BytesIO()
     plt.savefig(buf, format="png")
