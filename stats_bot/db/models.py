@@ -22,3 +22,12 @@ class Message(SQLModel, table=True):
     group_id: int = Field(foreign_key="group.id")
     text: str
     timestamp: datetime = Field(default=datetime.utcnow)
+
+
+class Attachment(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    user_id: int = Field(foreign_key="user.id")
+    group_id: int = Field(foreign_key="group.id")
+    message_id: int = Field()
+    media_type: str
+    timestamp: datetime = Field(default=datetime.utcnow)
