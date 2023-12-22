@@ -8,7 +8,7 @@ import logging, configparser
 import stats_bot.db.client as client
 from stats_bot.handlers.start import start
 from stats_bot.handlers.group import handle_update
-from stats_bot.handlers.plot import plot_table
+from stats_bot.handlers.plot import attachment_stats, plot_table
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
@@ -23,6 +23,7 @@ app = (
     ApplicationBuilder().token(configparser.get("stats_bot", "token")).build()
 )
 app.add_handler(CommandHandler("start", start, filters=filters.ChatType.PRIVATE))
+app.add_handler(CommandHandler("attachmentstats", attachment_stats, filters=filters.ChatType.GROUPS))
 app.add_handler(CommandHandler("textstats", plot_table, filters=filters.ChatType.GROUPS))
 app.add_handler(MessageHandler(filters.ChatType.GROUPS, handle_update))
 
